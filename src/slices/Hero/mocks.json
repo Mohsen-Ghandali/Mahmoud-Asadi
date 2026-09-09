@@ -1,0 +1,24 @@
+[
+  {
+    "__TYPES__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": [
+        {
+          "type": "heading1",
+          "text": "Welcome",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Built with Next.js, Slice Machine and Prismic.",
+          "spans": []
+        }
+      ]
+    },
+    "items": [],
+    "id": "hero-default"
+  }
+]
