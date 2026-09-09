@@ -2,7 +2,7 @@
   "id": "hero",
   "type": "SharedSlice",
   "name": "Hero",
-  "description": "Scroll-driven hero with a background image and a heading that morphs on scroll",
+  "description": "Dark portrait hero with a giant background name and a heading that morphs on scroll",
   "variations": [
     {
       "id": "default",
@@ -12,11 +12,19 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "eyebrow": {
+        "display_name": {
           "type": "Text",
           "config": {
-            "label": "Eyebrow",
-            "placeholder": "وکیل پایه یک دادگستری"
+            "label": "Display name (giant background text)",
+            "placeholder": "محمود اسدی"
+          }
+        },
+        "portrait_image": {
+          "type": "Image",
+          "config": {
+            "label": "Portrait image",
+            "constraint": {},
+            "thumbnails": []
           }
         },
         "heading": {
@@ -46,14 +54,6 @@
             "single": "paragraph"
           }
         },
-        "background_image": {
-          "type": "Image",
-          "config": {
-            "label": "Background image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
         "cta_label": {
           "type": "Text",
           "config": {
@@ -66,6 +66,13 @@
           "config": {
             "label": "CTA link",
             "placeholder": "لینک تماس یا فرم مشاوره"
+          }
+        },
+        "badge_text": {
+          "type": "Text",
+          "config": {
+            "label": "Circular badge text",
+            "placeholder": "راهکارهای حقوقی · مبتنی بر تجربه ·"
           }
         }
       },

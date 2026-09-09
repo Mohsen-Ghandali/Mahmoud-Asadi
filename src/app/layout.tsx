@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Naskh_Arabic, Vazirmatn } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +17,12 @@ const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
 });
 
+const notoNaskhArabic = Noto_Naskh_Arabic({
+  variable: "--font-naskh",
+  subsets: ["arabic"],
+  weight: ["500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "دفتر وکالت",
   description: "دفتر وکالت و مشاوره حقوقی",
@@ -27,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} ${notoNaskhArabic.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-persian">{children}</body>
     </html>
