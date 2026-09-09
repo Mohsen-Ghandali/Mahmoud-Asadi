@@ -3,20 +3,48 @@
     "__TYPES__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "title": [
+      "eyebrow": "وکیل پایه یک دادگستری",
+      "heading": [
         {
           "type": "heading1",
-          "text": "Welcome",
+          "text": "دفاع از حق شما، با تجربه و تخصص",
+          "spans": []
+        }
+      ],
+      "heading_alt": [
+        {
+          "type": "heading1",
+          "text": "مشاوره حقوقی تخصصی، همراه شما تا پایان راه",
           "spans": []
         }
       ],
       "description": [
         {
           "type": "paragraph",
-          "text": "Built with Next.js, Slice Machine and Prismic.",
+          "text": "بیش از یک دهه تجربه در دعاوی حقوقی، کیفری و خانواده در سراسر ایران.",
           "spans": []
         }
-      ]
+      ],
+      "background_image": {
+        "id": "hero-background",
+        "url": "https://images.prismic.io/mahmoud-asadi/hero-placeholder.jpg?auto=format,compress",
+        "alt": "دفتر وکالت",
+        "dimensions": {
+          "width": 2400,
+          "height": 1600
+        },
+        "edit": {
+          "x": 0,
+          "y": 0,
+          "zoom": 1,
+          "background": "#000000"
+        }
+      },
+      "cta_label": "درخواست مشاوره",
+      "cta_link": {
+        "link_type": "Web",
+        "url": "#contact"
+      }
     },
     "items": [],
     "id": "hero-default"

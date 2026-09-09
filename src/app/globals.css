@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-persian: var(--font-vazirmatn);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +24,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-section] {
+    height: auto !important;
+  }
+
+  [data-hero-sticky] {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    padding-block: 6rem;
+  }
+
+  [data-fx] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  [data-hero-alt-heading],
+  [data-hero-scrollhint] {
+    display: none !important;
+  }
 }

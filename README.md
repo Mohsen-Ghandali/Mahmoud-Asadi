@@ -21,7 +21,7 @@ To connect a real Prismic repository and manage slices/custom types visually:
 bun run slicemachine
 ```
 
-This opens Slice Machine at [http://localhost:9999](http://localhost:9999), where you can log in to Prismic, push the `page` custom type and `Hero` slice defined in this repo, and create a `home` document.
+This opens Slice Machine at [http://localhost:9999](http://localhost:9999), where you can log in to Prismic, push the `page` custom type and `Hero` slice defined in this repo, and create a `startseite` document.
 
 - Custom types live in `customtypes/`
 - Slices live in `src/slices/`
