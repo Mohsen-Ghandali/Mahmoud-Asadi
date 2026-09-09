@@ -38,9 +38,7 @@ body {
     padding-block: 6rem;
   }
 
-  [data-fx],
-  [data-hero-bg],
-  [data-hero-overlay] {
+  [data-fx] {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;

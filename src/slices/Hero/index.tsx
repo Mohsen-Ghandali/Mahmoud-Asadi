@@ -52,28 +52,12 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     };
   }, []);
 
-  const imageScale = map(progress, 0, 1, 1.18, 1);
-  const imageY = map(progress, 0, 1, 0, 18);
-  const overlayOpacity = map(progress, 0, 1, 0.5, 0.82);
-
-  const eyebrowOpacity = map(progress, 0, 0.2, 1, 0);
-  const eyebrowY = map(progress, 0, 0.2, 0, -32);
-
   const headingOpacity = map(progress, 0.18, 0.38, 1, 0);
   const headingY = map(progress, 0, 0.38, 0, -56);
   const headingBlur = map(progress, 0, 0.38, 0, 6);
 
   const headingAltOpacity = map(progress, 0.32, 0.55, 0, 1);
   const headingAltY = map(progress, 0.32, 0.55, 56, 0);
-
-  const descriptionOpacity = map(progress, 0.48, 0.72, 0, 1);
-  const descriptionY = map(progress, 0.48, 0.72, 32, 0);
-
-  const ctaOpacity = map(progress, 0.58, 0.82, 0, 1);
-  const ctaScale = map(progress, 0.58, 0.82, 0.92, 1);
-
-  const orbitRotate = map(progress, 0, 1, 0, 120);
-  const orbitScale = map(progress, 0, 1, 1, 1.35);
 
   const scrollHintOpacity = map(progress, 0, 0.12, 1, 0);
 
@@ -89,14 +73,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
         data-hero-sticky
         className="sticky top-0 flex h-screen items-center overflow-hidden"
       >
-        <div
-          aria-hidden
-          data-hero-bg
-          className="absolute inset-0"
-          style={{
-            transform: `scale(${imageScale}) translateY(${imageY}%)`,
-          }}
-        >
+        <div aria-hidden data-hero-bg className="absolute inset-0">
           <PrismicNextImage
             field={slice.primary.background_image}
             fill
@@ -109,27 +86,15 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           aria-hidden
           data-hero-overlay
           className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"
-          style={{ opacity: overlayOpacity }}
         />
 
         <div
           aria-hidden
-          data-fx
           className="pointer-events-none absolute -start-24 -top-24 size-[36rem] rounded-full border border-white/10"
-          style={{
-            transform: `rotate(${orbitRotate}deg) scale(${orbitScale})`,
-          }}
         />
 
         <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-start gap-6 px-6 text-white sm:px-10">
-          <p
-            data-fx
-            className="text-sm font-medium tracking-wide text-amber-300 sm:text-base"
-            style={{
-              opacity: eyebrowOpacity,
-              transform: `translateY(${eyebrowY}px)`,
-            }}
-          >
+          <p className="text-sm font-medium tracking-wide text-amber-300 sm:text-base">
             {slice.primary.eyebrow}
           </p>
 
@@ -159,32 +124,17 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             </div>
           </div>
 
-          <div
-            data-fx
-            className="max-w-xl text-base leading-8 text-white/80 sm:text-lg [&_p]:m-0"
-            style={{
-              opacity: descriptionOpacity,
-              transform: `translateY(${descriptionY}px)`,
-            }}
-          >
+          <div className="max-w-xl text-base leading-8 text-white/80 sm:text-lg [&_p]:m-0">
             <PrismicRichText field={slice.primary.description} />
           </div>
 
           {slice.primary.cta_label && (
-            <div
-              data-fx
-              style={{
-                opacity: ctaOpacity,
-                transform: `scale(${ctaScale})`,
-              }}
+            <PrismicNextLink
+              field={slice.primary.cta_link}
+              className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-7 py-3 text-sm font-semibold text-black transition-colors hover:bg-amber-300 sm:text-base"
             >
-              <PrismicNextLink
-                field={slice.primary.cta_link}
-                className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-7 py-3 text-sm font-semibold text-black transition-colors hover:bg-amber-300 sm:text-base"
-              >
-                {slice.primary.cta_label}
-              </PrismicNextLink>
-            </div>
+              {slice.primary.cta_label}
+            </PrismicNextLink>
           )}
         </div>
 
