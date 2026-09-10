@@ -33,18 +33,24 @@ body {
   padding-inline: 20px;
 }
 
-@utility text-outline {
+/* Neon-tube lettering: a bright hairline outline with layered glow. The glow
+   comes from drop-shadow rather than text-shadow so it follows the stroke
+   instead of filling the glyph. */
+@utility text-neon {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.26);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.92);
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.55))
+    drop-shadow(0 0 14px rgba(214, 232, 255, 0.38))
+    drop-shadow(0 0 38px rgba(180, 214, 255, 0.22));
 }
 
-/* Blends a rectangular photo into the black background at its edges. */
+/* Blends a photo into the black background at its edges. */
 @utility portrait-blend {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%),
-    linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 9%),
+    linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, transparent, #000 30%),
-    linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 9%),
+    linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   mask-composite: intersect;
 }
 

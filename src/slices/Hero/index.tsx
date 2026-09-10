@@ -1,11 +1,13 @@
 "use client";
 
 import { FC, useEffect, useRef, useState } from "react";
-import { Content } from "@prismicio/client";
+import { asText, Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
-export type HeroProps = SliceComponentProps<Content.HeroSlice>;
+export type HeroContext = { lang?: string };
+
+export type HeroProps = SliceComponentProps<Content.HeroSlice, HeroContext>;
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
@@ -24,7 +26,7 @@ const ARABIC_SCRIPT = /[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]/;
 const BADGE_RADIUS = 58;
 const NAME_MEASURE_SIZE = 100;
 
-const Hero: FC<HeroProps> = ({ slice }) => {
+const Hero: FC<HeroProps> = ({ slice, context }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const nameBoxRef = useRef<HTMLDivElement | null>(null);
   const nameRef = useRef<HTMLSpanElement | null>(null);
@@ -32,6 +34,14 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
   const displayName = slice.primary.display_name ?? "";
   const nameIsArabicScript = ARABIC_SCRIPT.test(displayName);
+
+  // German reads left, Persian reads right. Prefer the document's own locale
+  // and fall back to the script of its text, so the slice simulator (which
+  // passes no context) still lays out correctly.
+  const lang = context?.lang;
+  const isRtl = lang
+    ? /^(fa|ar|he|ur)/i.test(lang)
+    : ARABIC_SCRIPT.test(`${displayName}${asText(slice.primary.heading)}`);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -113,6 +123,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       data-hero-section
+      dir={isRtl ? "rtl" : "ltr"}
       className="relative h-[200vh] bg-black text-white"
     >
       <div data-hero-sticky className="sticky top-0 h-screen overflow-hidden">
@@ -124,7 +135,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           >
             <span
               ref={nameRef}
-              className="text-outline font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
+              className="text-neon font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
               style={
                 // Big Shoulders is already tall and narrow; Vazirmatn, which
                 // Persian falls back to, needs stretching to match it.
