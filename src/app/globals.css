@@ -8,9 +8,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-persian: var(--font-vazirmatn);
+  --color-brand: #f0ea3c;
+  --font-body: var(--font-montserrat), var(--font-vazirmatn), sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-vazirmatn), sans-serif;
+  --font-display-name: var(--font-big-shoulders), var(--font-vazirmatn),
+    sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,19 +25,44 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@utility container-app {
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Neon-tube lettering: a bright hairline outline with layered glow. The glow
+   comes from drop-shadow rather than text-shadow so it follows the stroke
+   instead of filling the glyph. */
+@utility text-neon {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.92);
+  /* The offset layer pools the light below the lettering, the way a real
+     neon tube spills onto the surface under it. */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.55))
+    drop-shadow(0 0 14px rgba(214, 232, 255, 0.38))
+    drop-shadow(0 16px 30px rgba(176, 210, 255, 0.3))
+    drop-shadow(0 0 52px rgba(180, 214, 255, 0.18));
+  -webkit-mask-image: linear-gradient(to top, transparent 4%, #000 54%);
+  mask-image: linear-gradient(to top, transparent 4%, #000 54%);
+  /* Masks tile by default; without this the gradient repeats over the glyph
+     tops and shreds the lettering. */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-hero-section] {
-    height: auto !important;
+    height: 100vh !important;
   }
 
   [data-hero-sticky] {
     position: relative !important;
     top: auto !important;
-    height: auto !important;
-    padding-block: 6rem;
   }
 
   [data-fx] {
@@ -44,8 +71,11 @@ body {
     filter: none !important;
   }
 
-  [data-hero-alt-heading],
-  [data-hero-scrollhint] {
+  [data-hero-alt-heading] {
     display: none !important;
+  }
+
+  [data-hero-badge-ring] {
+    animation: none !important;
   }
 }

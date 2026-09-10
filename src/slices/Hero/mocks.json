@@ -3,7 +3,22 @@
     "__TYPES__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "eyebrow": "وکیل پایه یک دادگستری",
+      "display_name": "محمود اسدی",
+      "portrait_image": {
+        "id": "hero-portrait",
+        "url": "https://images.prismic.io/mahmoud-asadi/hero-portrait.jpg?auto=format,compress",
+        "alt": "محمود اسدی، وکیل پایه یک دادگستری",
+        "dimensions": {
+          "width": 1200,
+          "height": 1500
+        },
+        "edit": {
+          "x": 0,
+          "y": 0,
+          "zoom": 1,
+          "background": "#000000"
+        }
+      },
       "heading": [
         {
           "type": "heading1",
@@ -25,26 +40,12 @@
           "spans": []
         }
       ],
-      "background_image": {
-        "id": "hero-background",
-        "url": "https://images.prismic.io/mahmoud-asadi/hero-placeholder.jpg?auto=format,compress",
-        "alt": "دفتر وکالت",
-        "dimensions": {
-          "width": 2400,
-          "height": 1600
-        },
-        "edit": {
-          "x": 0,
-          "y": 0,
-          "zoom": 1,
-          "background": "#000000"
-        }
-      },
       "cta_label": "درخواست مشاوره",
       "cta_link": {
         "link_type": "Web",
         "url": "#contact"
-      }
+      },
+      "badge_text": "راهکارهای حقوقی · مبتنی بر تجربه ·"
     },
     "items": [],
     "id": "hero-default"

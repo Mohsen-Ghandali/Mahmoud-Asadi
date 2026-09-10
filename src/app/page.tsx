@@ -25,5 +25,15 @@ export default async function Home() {
     );
   }
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  const isRtl = /^(fa|ar|he|ur)/i.test(page.lang);
+
+  return (
+    <div lang={page.lang} dir={isRtl ? "rtl" : "ltr"}>
+      <SliceZone
+        slices={page.data.slices}
+        components={components}
+        context={{ lang: page.lang }}
+      />
+    </div>
+  );
 }

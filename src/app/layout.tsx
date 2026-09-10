@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import {
+  Big_Shoulders,
+  Montserrat,
+  Vazirmatn,
+} from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Latin faces come first in each stack; Arabic glyphs fall through to the
+// Persian faces automatically, so one stack serves both languages.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bigShoulders = Big_Shoulders({
+  variable: "--font-big-shoulders",
   subsets: ["latin"],
 });
 
@@ -27,9 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${bigShoulders.variable} ${vazirmatn.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-persian">{children}</body>
+      <body className="min-h-full flex flex-col font-body">{children}</body>
     </html>
   );
 }

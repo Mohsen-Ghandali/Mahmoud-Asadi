@@ -16,13 +16,14 @@ export type PageDocument<Lang extends string = string> =
 export type AllDocumentTypes = PageDocument;
 
 export interface HeroSliceDefaultPrimary {
-  eyebrow: prismic.KeyTextField;
+  display_name: prismic.KeyTextField;
+  portrait_image: prismic.ImageField;
   heading: prismic.RichTextField;
   heading_alt: prismic.RichTextField;
   description: prismic.RichTextField;
-  background_image: prismic.ImageField;
   cta_label: prismic.KeyTextField;
   cta_link: prismic.LinkField;
+  badge_text: prismic.KeyTextField;
 }
 
 export type HeroSliceDefault = prismic.SharedSliceVariation<
