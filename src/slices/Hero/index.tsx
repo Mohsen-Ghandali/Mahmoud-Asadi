@@ -136,22 +136,23 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
             <span
               ref={nameRef}
               className="text-neon font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
-              style={
-                // Big Shoulders is already tall and narrow; Vazirmatn, which
-                // Persian falls back to, needs stretching to match it.
-                nameIsArabicScript ? { transform: "scaleY(1.15)" } : undefined
-              }
+              // Stretched from the top so the extra height grows downwards,
+              // tucking the bottom of the lettering behind the portrait.
+              style={{ transform: nameIsArabicScript ? "scaleY(1.2)" : "scaleY(1.32)" }}
             >
               {displayName}
             </span>
           </div>
 
-          <div className="portrait-blend absolute inset-x-0 bottom-0 z-10 mx-auto h-[74%] w-[76%] max-w-[300px] sm:h-[82%] sm:w-[38%] sm:max-w-[560px]">
+          {/* The image sizes itself to its own aspect inside this box, so its
+              full width stays visible and the edge blend lands on the photo
+              rather than on a letterboxed frame around it. */}
+          <div className="absolute inset-x-0 bottom-0 z-10 mx-auto flex h-[76%] w-[88%] max-w-[340px] items-end justify-center sm:h-[87%] sm:w-[46%] sm:max-w-[640px]">
             <PrismicNextImage
               field={slice.primary.portrait_image}
-              fill
               priority
-              className="object-cover object-top grayscale"
+              sizes="(max-width: 640px) 88vw, 46vw"
+              className="portrait-blend h-auto max-h-full w-auto max-w-full grayscale"
             />
           </div>
 
@@ -194,11 +195,11 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
           )}
 
           <div className="absolute inset-x-5 bottom-[12%] z-20 flex justify-start">
-            <div className="flex w-full max-w-[380px] flex-col items-start gap-6">
+            <div className="flex w-full max-w-[440px] flex-col items-start gap-6">
               <div className="grid w-full">
                 <div
                   data-fx
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.01em] [&_h1]:text-[2rem] [&_h1]:font-normal [&_h1]:leading-[1.16] sm:[&_h1]:text-[2.5rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.02em] [&_h1]:text-[2.5rem] [&_h1]:font-light [&_h1]:leading-[1.1] sm:[&_h1]:text-[3.4rem]"
                   style={{
                     opacity: headingOpacity,
                     transform: `translateY(${headingY}px)`,
@@ -211,7 +212,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                 <div
                   data-fx
                   data-hero-alt-heading
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.01em] [&_h1]:text-[2rem] [&_h1]:font-normal [&_h1]:leading-[1.16] sm:[&_h1]:text-[2.5rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.02em] [&_h1]:text-[2.5rem] [&_h1]:font-light [&_h1]:leading-[1.1] sm:[&_h1]:text-[3.4rem]"
                   style={{
                     opacity: headingAltOpacity,
                     transform: `translateY(${headingAltY}px)`,
