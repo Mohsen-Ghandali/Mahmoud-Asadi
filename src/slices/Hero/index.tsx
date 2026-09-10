@@ -126,7 +126,10 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
       dir={isRtl ? "rtl" : "ltr"}
       className="relative h-[200vh] bg-black text-white"
     >
-      <div data-hero-sticky className="sticky top-0 h-screen overflow-hidden">
+      <div
+        data-hero-sticky
+        className="sticky top-0 h-screen min-h-[720px] overflow-hidden"
+      >
         <div className="container-app relative h-full w-full">
           <div
             ref={nameBoxRef}
@@ -138,21 +141,34 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
               className="text-neon font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
               // Stretched from the top so the extra height grows downwards,
               // tucking the bottom of the lettering behind the portrait.
-              style={{ transform: nameIsArabicScript ? "scaleY(1.2)" : "scaleY(1.32)" }}
+              // Persian glyphs sit lower in the line box than Latin capitals,
+              // so they need a shallower fade to stay legible.
+              style={{
+                transform: nameIsArabicScript ? "scaleY(1.2)" : "scaleY(1.32)",
+                ...(nameIsArabicScript
+                  ? {
+                      WebkitMaskImage:
+                        "linear-gradient(to top, transparent 0%, #000 34%)",
+                      maskImage:
+                        "linear-gradient(to top, transparent 0%, #000 34%)",
+                    }
+                  : {}),
+              }}
             >
               {displayName}
             </span>
           </div>
 
-          {/* The image sizes itself to its own aspect inside this box, so its
-              full width stays visible and the edge blend lands on the photo
-              rather than on a letterboxed frame around it. */}
-          <div className="absolute inset-x-0 bottom-0 z-10 mx-auto flex h-[76%] w-[88%] max-w-[340px] items-end justify-center sm:h-[87%] sm:w-[46%] sm:max-w-[640px]">
+          {/* Scaled off its width and anchored to the top, so the figure runs
+              past the bottom edge and gets cropped there instead of being
+              held back by the viewport height. */}
+          <div className="portrait-blend absolute inset-x-0 bottom-0 top-[10%] z-10 mx-auto w-[76%] max-w-[330px] sm:w-[58%] sm:max-w-[860px]">
             <PrismicNextImage
               field={slice.primary.portrait_image}
+              fill
               priority
-              sizes="(max-width: 640px) 88vw, 46vw"
-              className="portrait-blend h-auto max-h-full w-auto max-w-full grayscale"
+              sizes="(max-width: 640px) 76vw, 58vw"
+              className="object-cover object-top grayscale"
             />
           </div>
 
@@ -199,7 +215,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
               <div className="grid w-full">
                 <div
                   data-fx
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.02em] [&_h1]:text-[2.5rem] [&_h1]:font-light [&_h1]:leading-[1.1] sm:[&_h1]:text-[3.4rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.06em] [&_h1]:text-[1.9rem] [&_h1]:font-light [&_h1]:leading-[1.28] sm:[&_h1]:text-[2.6rem]"
                   style={{
                     opacity: headingOpacity,
                     transform: `translateY(${headingY}px)`,
@@ -212,7 +228,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                 <div
                   data-fx
                   data-hero-alt-heading
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.02em] [&_h1]:text-[2.5rem] [&_h1]:font-light [&_h1]:leading-[1.1] sm:[&_h1]:text-[3.4rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.06em] [&_h1]:text-[1.9rem] [&_h1]:font-light [&_h1]:leading-[1.28] sm:[&_h1]:text-[2.6rem]"
                   style={{
                     opacity: headingAltOpacity,
                     transform: `translateY(${headingAltY}px)`,

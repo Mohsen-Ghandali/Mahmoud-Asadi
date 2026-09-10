@@ -9,8 +9,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: #f0ea3c;
-  --font-body: var(--font-dm-sans), var(--font-vazirmatn), sans-serif;
-  --font-heading: var(--font-cormorant), var(--font-naskh), serif;
+  --font-body: var(--font-montserrat), var(--font-vazirmatn), sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-vazirmatn), sans-serif;
   --font-display-name: var(--font-big-shoulders), var(--font-vazirmatn),
     sans-serif;
 }
@@ -45,6 +45,8 @@ body {
     drop-shadow(0 0 14px rgba(214, 232, 255, 0.38))
     drop-shadow(0 16px 30px rgba(176, 210, 255, 0.3))
     drop-shadow(0 0 52px rgba(180, 214, 255, 0.18));
+  -webkit-mask-image: linear-gradient(to top, transparent 4%, #000 54%);
+  mask-image: linear-gradient(to top, transparent 4%, #000 54%);
 }
 
 /* Blends a photo into the black background at its edges. */
