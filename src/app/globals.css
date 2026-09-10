@@ -8,10 +8,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: #f0ea3c;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-persian: var(--font-vazirmatn);
-  --font-persian-serif: var(--font-naskh);
+  --font-heading: var(--font-playfair), var(--font-naskh), serif;
+  --font-display-name: var(--font-anton), var(--font-vazirmatn), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,16 +35,29 @@ body {
   padding-inline: 20px;
 }
 
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.26);
+}
+
+/* Blends a rectangular photo into the black background at its edges. */
+@utility portrait-blend {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%),
+    linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent, #000 30%),
+    linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  mask-composite: intersect;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-hero-section] {
-    height: auto !important;
+    height: 100vh !important;
   }
 
   [data-hero-sticky] {
     position: relative !important;
     top: auto !important;
-    height: auto !important;
-    padding-block: 6rem;
   }
 
   [data-fx] {
@@ -53,5 +68,9 @@ body {
 
   [data-hero-alt-heading] {
     display: none !important;
+  }
+
+  [data-hero-badge-ring] {
+    animation: none !important;
   }
 }
