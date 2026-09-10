@@ -47,16 +47,12 @@ body {
     drop-shadow(0 0 52px rgba(180, 214, 255, 0.18));
   -webkit-mask-image: linear-gradient(to top, transparent 4%, #000 54%);
   mask-image: linear-gradient(to top, transparent 4%, #000 54%);
-}
-
-/* Blends a photo into the black background at its edges. */
-@utility portrait-blend {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 13%),
-    linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, transparent, #000 13%),
-    linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-composite: intersect;
+  /* Masks tile by default; without this the gradient repeats over the glyph
+     tops and shreds the lettering. */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {

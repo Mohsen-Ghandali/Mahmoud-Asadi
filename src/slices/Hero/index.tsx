@@ -23,7 +23,7 @@ const map = (
 };
 
 const ARABIC_SCRIPT = /[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]/;
-const BADGE_RADIUS = 58;
+const BADGE_RADIUS = 104;
 const NAME_MEASURE_SIZE = 100;
 
 const Hero: FC<HeroProps> = ({ slice, context }) => {
@@ -138,7 +138,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
           >
             <span
               ref={nameRef}
-              className="text-neon font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
+              className="text-neon font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-none tracking-[0.01em]"
               // Stretched from the top so the extra height grows downwards,
               // tucking the bottom of the lettering behind the portrait.
               // Persian glyphs sit lower in the line box than Latin capitals,
@@ -162,19 +162,19 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
           {/* Scaled off its width and anchored to the top, so the figure runs
               past the bottom edge and gets cropped there instead of being
               held back by the viewport height. */}
-          <div className="portrait-blend absolute inset-x-0 bottom-0 top-[10%] z-10 mx-auto w-[76%] max-w-[330px] sm:w-[58%] sm:max-w-[860px]">
+          <div className="absolute inset-x-0 bottom-0 top-[10%] z-10 mx-auto w-[76%] max-w-[330px] sm:w-[54%] sm:max-w-[820px]">
             <PrismicNextImage
               field={slice.primary.portrait_image}
               fill
               priority
-              sizes="(max-width: 640px) 76vw, 58vw"
+              sizes="(max-width: 640px) 76vw, 54vw"
               className="object-cover object-top grayscale"
             />
           </div>
 
           {badgeTokens.length > 0 && (
             <div className="pointer-events-none absolute end-5 top-[52%] z-20 hidden -translate-y-1/2 sm:end-[4%] sm:block">
-              <div className="relative size-[132px]">
+              <div className="relative size-[236px]">
                 <div
                   data-hero-badge-ring
                   className="absolute inset-0 animate-[spin_22s_linear_infinite]"
@@ -182,7 +182,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                   {badgeTokens.map((token, i) => (
                     <span
                       key={i}
-                      className="absolute inset-0 m-auto h-fit w-fit whitespace-nowrap text-[11px] font-normal uppercase text-white/75"
+                      className="absolute inset-0 m-auto h-fit w-fit whitespace-nowrap text-[13px] font-medium uppercase tracking-[0.1em] text-white"
                       style={{
                         transform: `rotate(${i * badgeAngleStep}deg) translateY(-${BADGE_RADIUS}px)`,
                       }}
@@ -194,7 +194,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg
                     viewBox="0 0 24 24"
-                    className="h-[58px] w-[58px] text-white/85"
+                    className="h-[92px] w-[92px] text-white"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.1"
@@ -210,12 +210,20 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
             </div>
           )}
 
+          {/* Bottom-up scrim so the copy stays readable over the photo. It
+              spans the full width, so it never shows a vertical edge down the
+              sides of the portrait. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[15] h-[62%] bg-gradient-to-t from-black via-black/80 to-transparent sm:h-[46%] sm:via-black/45"
+          />
+
           <div className="absolute inset-x-5 bottom-[12%] z-20 flex justify-start">
-            <div className="flex w-full max-w-[440px] flex-col items-start gap-6">
+            <div className="flex w-full max-w-[500px] flex-col items-start gap-6">
               <div className="grid w-full">
                 <div
                   data-fx
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.06em] [&_h1]:text-[1.9rem] [&_h1]:font-light [&_h1]:leading-[1.28] sm:[&_h1]:text-[2.6rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.04em] [&_h1]:text-[2.25rem] [&_h1]:font-light [&_h1]:leading-[1.2] sm:[&_h1]:text-[64px]"
                   style={{
                     opacity: headingOpacity,
                     transform: `translateY(${headingY}px)`,
@@ -228,7 +236,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                 <div
                   data-fx
                   data-hero-alt-heading
-                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.06em] [&_h1]:text-[1.9rem] [&_h1]:font-light [&_h1]:leading-[1.28] sm:[&_h1]:text-[2.6rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.04em] [&_h1]:text-[2.25rem] [&_h1]:font-light [&_h1]:leading-[1.2] sm:[&_h1]:text-[64px]"
                   style={{
                     opacity: headingAltOpacity,
                     transform: `translateY(${headingAltY}px)`,
@@ -238,7 +246,7 @@ const Hero: FC<HeroProps> = ({ slice, context }) => {
                 </div>
               </div>
 
-              <div className="max-w-[310px] text-[15px] leading-[1.75] text-white/60 [&_p]:m-0">
+              <div className="max-w-[380px] text-[18px] leading-[1.7] text-white/60 [&_p]:m-0">
                 <PrismicRichText field={slice.primary.description} />
               </div>
 
