@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
 import {
-  Anton,
-  Geist,
-  Geist_Mono,
+  Big_Shoulders,
+  DM_Sans,
   Noto_Naskh_Arabic,
   Playfair_Display,
   Vazirmatn,
 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Latin faces come first in each stack; Arabic glyphs fall through to the
+// Persian faces automatically, so one stack serves both languages.
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
+const bigShoulders = Big_Shoulders({
+  variable: "--font-big-shoulders",
   subsets: ["latin"],
 });
 
@@ -30,17 +36,6 @@ const notoNaskhArabic = Noto_Naskh_Arabic({
   weight: ["500", "600", "700"],
 });
 
-const anton = Anton({
-  variable: "--font-anton",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "دفتر وکالت",
   description: "دفتر وکالت و مشاوره حقوقی",
@@ -51,9 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} ${notoNaskhArabic.variable} ${anton.variable} ${playfairDisplay.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${playfairDisplay.variable} ${bigShoulders.variable} ${vazirmatn.variable} ${notoNaskhArabic.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-persian">{children}</body>
+      <body className="min-h-full flex flex-col font-body">{children}</body>
     </html>
   );
 }

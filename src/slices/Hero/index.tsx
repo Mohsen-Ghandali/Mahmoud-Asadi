@@ -124,13 +124,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           >
             <span
               ref={nameRef}
-              className="text-outline font-display-name inline-block origin-top whitespace-nowrap text-[15vw] uppercase leading-[0.8]"
+              className="text-outline font-display-name inline-block origin-top whitespace-nowrap text-[15vw] font-extrabold uppercase leading-[0.78] tracking-[0.01em]"
               style={
-                // Anton ships a single heavy weight; Persian falls back to
-                // Vazirmatn, which needs 900 to match that stroke.
-                nameIsArabicScript
-                  ? { fontWeight: 900 }
-                  : { transform: "scaleY(1.28)" }
+                // Big Shoulders is already tall and narrow; Vazirmatn, which
+                // Persian falls back to, needs stretching to match it.
+                nameIsArabicScript ? { transform: "scaleY(1.15)" } : undefined
               }
             >
               {displayName}
@@ -189,7 +187,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
               <div className="grid w-full">
                 <div
                   data-fx
-                  className="font-heading col-start-1 row-start-1 uppercase [&_h1]:text-[2rem] [&_h1]:font-medium [&_h1]:leading-[1.14] sm:[&_h1]:text-[2.5rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.01em] [&_h1]:text-[2rem] [&_h1]:font-normal [&_h1]:leading-[1.16] sm:[&_h1]:text-[2.5rem]"
                   style={{
                     opacity: headingOpacity,
                     transform: `translateY(${headingY}px)`,
@@ -202,7 +200,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
                 <div
                   data-fx
                   data-hero-alt-heading
-                  className="font-heading col-start-1 row-start-1 uppercase [&_h1]:text-[2rem] [&_h1]:font-medium [&_h1]:leading-[1.14] sm:[&_h1]:text-[2.5rem]"
+                  className="font-heading col-start-1 row-start-1 uppercase tracking-[0.01em] [&_h1]:text-[2rem] [&_h1]:font-normal [&_h1]:leading-[1.16] sm:[&_h1]:text-[2.5rem]"
                   style={{
                     opacity: headingAltOpacity,
                     transform: `translateY(${headingAltY}px)`,
